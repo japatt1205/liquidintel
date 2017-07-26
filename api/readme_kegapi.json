@@ -1,0 +1,404 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Smart Kegerator",
+    "description": "An API to connect to the Smart Kegerator Liquid Intelligence tool."
+  },
+  "schemes": [
+    "https"
+  ],
+  "host": "dxliquidintel.azurewebsites.net",
+  "basePath": "/api",
+  "tags": [
+    {
+      "name": "kegs",
+      "description": "Everything about kegs and beer"
+    },
+    {
+      "name": "pour",
+      "description": "Data on pour activity"
+    },
+    {
+      "name": "user",
+      "description": "Operations about user"
+    }
+  ],
+  "paths": {
+    "/kegs": {
+      "get": {
+        "tags": [
+          "kegs"
+        ],
+        "summary": "Get Kegs",
+        "description": "Returns a list of all registered kegs in the liquied intelligence database",
+        "responses": {
+          "200": {
+            "description": "list of kegs",
+            "schema": {
+              "type": "array",
+              "items": {
+                "properties": {
+                  "KegID": {
+                    "type": "integer"
+                  },
+                  "Name": {
+                    "type": "string"
+                  },
+                  "Brewery": {
+                    "type": "string"
+                  },
+                  "BeerType": {
+                    "type": "string"
+                  },
+                  "ABV": {
+                    "type": "number"
+                  },
+                  "IBU": {
+                    "type": "number"
+                  },
+                  "BeerDescription": {
+                    "type": "string"
+                  },
+                  "UntappdId": {
+                    "type": "string"
+                  },
+                  "imagePath": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/currentkeg": {
+      "get": {
+        "tags": [
+          "kegs"
+        ],
+        "summary": "Get current kegs",
+        "description": "Used to see all current kegs on the tap",
+        "responses": {
+          "200": {
+            "description": "list of current kegs",
+            "schema": {
+              "type": "array",
+              "items": {
+                "properties": {
+                  "TapID": {
+                    "type": "integer"
+                  },
+                  "KegID": {
+                    "type": "integer"
+                  },
+                  "InstallDate": {
+                    "type": "string"
+                  },
+                  "KegSize": {
+                    "type": "integer"
+                  },
+                  "CurrentVolume": {
+                    "type": "integer"
+                  },
+                  "Name": {
+                    "type": "string"
+                  },
+                  "Brewery": {
+                    "type": "string"
+                  },
+                  "BeerType": {
+                    "type": "string"
+                  },
+                  "ABV": {
+                    "type": "number"
+                  },
+                  "IBU": {
+                    "type": "number"
+                  },
+                  "BeerDescription": {
+                    "type": "string"
+                  },
+                  "UntappdId": {
+                    "type": "integer"
+                  },
+                  "imagePath": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/currentkeg/{id}": {
+      "get": {
+        "tags": [
+          "kegs"
+        ],
+        "summary": "Gets information on specified tap",
+        "description": "Returns the keg on the Tap ID specified",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The tapid",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "list of current kegs",
+            "schema": {
+              "type": "array",
+              "items": {
+                "properties": {
+                  "TapID": {
+                    "type": "integer"
+                  },
+                  "KegID": {
+                    "type": "integer"
+                  },
+                  "InstallDate": {
+                    "type": "string"
+                  },
+                  "KegSize": {
+                    "type": "integer"
+                  },
+                  "CurrentVolume": {
+                    "type": "integer"
+                  },
+                  "Name": {
+                    "type": "string"
+                  },
+                  "Brewery": {
+                    "type": "string"
+                  },
+                  "BeerType": {
+                    "type": "string"
+                  },
+                  "ABV": {
+                    "type": "number"
+                  },
+                  "IBU": {
+                    "type": "number"
+                  },
+                  "BeerDescription": {
+                    "type": "string"
+                  },
+                  "UntappdId": {
+                    "type": "integer"
+                  },
+                  "imagePath": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The tap does not exists"
+          }
+        }
+      }
+    },
+    "/activity": {
+      "get": {
+        "tags": [
+          "pour"
+        ],
+        "summary": "See all pour activities",
+        "description": "A session is defined by an instance that a user has scanned their badge and poured a beer. You can see information on each session including the time of pouring as well as the pour amount and beer selected. You see descriptive information on both the user and the beer",
+        "responses": {
+          "200": {
+            "description": "list of pour activities and associated data",
+            "schema": {
+              "type": "array",
+              "items": {
+                "properties": {
+                  "SessionID": {
+                    "type": "integer"
+                  },
+                  "PourTime": {
+                    "type": "string"
+                  },
+                  "PourAmount": {
+                    "type": "integer"
+                  },
+                  "BeerName": {
+                    "type": "string"
+                  },
+                  "Brewery": {
+                    "type": "string"
+                  },
+                  "BeerType": {
+                    "type": "string"
+                  },
+                  "ABV": {
+                    "type": "number"
+                  },
+                  "IBU": {
+                    "type": "number"
+                  },
+                  "BeerDescription": {
+                    "type": "string"
+                  },
+                  "UntappdId": {
+                    "type": "integer"
+                  },
+                  "BeerImagePath": {
+                    "type": "string"
+                  },
+                  "PersonnelNumber": {
+                    "type": "integer"
+                  },
+                  "Alias": {
+                    "type": "string"
+                  },
+                  "FullName": {
+                    "type": "string"
+                  },
+                  "UntappdCheckinID": {
+                    "type": "integer"
+                  },
+                  "UntappdBadgeName": {
+                    "type": "integer"
+                  },
+                  "UntappdBadgeImageURL": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ispersonvalid/{id}": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Find out if specified user is valid",
+        "description": "Tells you if person is valid user of the keg",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The specific users cardid",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "tells you if user is valid",
+            "schema": {
+              "type": "array",
+              "items": {
+                "properties": {
+                  "PersonnelNumber": {
+                    "type": "integer"
+                  },
+                  "Valid": {
+                    "type": "boolean"
+                  },
+                  "FullName": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The user is not found"
+          }
+        }
+      }
+    },
+    "/validpeople": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Information on specified user",
+        "description": "Get information on a specific registered user",
+        "responses": {
+          "200": {
+            "description": "information on specified user",
+            "schema": {
+              "type": "array",
+              "items": {
+                "properties": {
+                  "PersonnelNumber": {
+                    "type": "integer"
+                  },
+                  "Valid": {
+                    "type": "boolean"
+                  },
+                  "FullName": {
+                    "type": "string"
+                  },
+                  "CardId": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The user is not found"
+          }
+        }
+      }
+    },
+    "/validpeople/{id}": {
+      "get": {
+        "tags": [
+          "user"
+        ],
+        "summary": "Information on specified user",
+        "description": "Get information on a specific registered user",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The specific users cardid",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "information on specified user",
+            "schema": {
+              "type": "array",
+              "items": {
+                "properties": {
+                  "PersonnelNumber": {
+                    "type": "integer"
+                  },
+                  "Valid": {
+                    "type": "boolean"
+                  },
+                  "FullName": {
+                    "type": "string"
+                  },
+                  "CardId": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The user is not found"
+          }
+        }
+      }
+    }
+  }
+}
